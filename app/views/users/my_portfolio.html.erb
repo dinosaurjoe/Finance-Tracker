@@ -5,7 +5,8 @@
   <form id="stock-lookup-form" ng-submit="lookup()">
     <div class="form-group row no-padding text-center col-md-12">
       <div class="col-md-10">
-        <input id="stock_ticker" type="text" class="form-control search-box input-lg" placeholder="Stock Ticker Symbol" autofocus="true" ng-model="ticker" />
+        <input id="stock_ticker" type="text" class="form-control search-box input-lg"
+               placeholder="Stock Ticker Symbol" autofocus="true" ng-model="ticker" />
       </div>
       <div class="col-md-2">
         <button type="submit" class="btn btn-lg btn-success">
@@ -14,6 +15,7 @@
       </div>
     </div>
   </form>
+  <span class="badge">{‌{stock.symbol}}</span>
 </div>
 <div id="results">
   <%= render 'result' %>
