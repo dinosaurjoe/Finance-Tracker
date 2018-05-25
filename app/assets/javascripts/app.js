@@ -1,4 +1,4 @@
-var app = angular.module('FinanceTrackerApp',[]);
+var app = angular.module('FinanceTrackerApp',[])
                  .controller('stocksController', ['$scope', function($scope){
                   $scope.lookup = function(){
                     if($scope.ticker != undefined && $scope.ticker != ''){
