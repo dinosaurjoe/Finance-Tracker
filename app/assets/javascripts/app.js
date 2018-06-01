@@ -1,6 +1,10 @@
 var app = angular.module('FinanceTrackerApp',[])
                  .controller('stocksController', ['$scope', function($scope){
+
+                  $scope.stock = {};
+
                   $scope.lookup = function(){
+
                     if($scope.ticker != undefined && $scope.ticker != ''){
                         $scope.stock = {
                           symbol: 'FOO',
@@ -8,7 +12,9 @@ var app = angular.module('FinanceTrackerApp',[])
                           last_price: '123.00'
                         }
                     } else {
-                        $scope.stock = {}
+                        $scope.stock = {
+                          symbol: {}
+                        }
                     }
                    }
                  }])

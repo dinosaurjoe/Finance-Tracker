@@ -18,4 +18,7 @@ class Stock < ApplicationRecord
     number.gsub(",", "")
   end
 
+# Stock cannot be added because you already added
+# 10 stocks
+# this stock
 end
