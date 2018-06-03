@@ -8,18 +8,24 @@ var app = angular.module('FinanceTrackerApp',[])
 
                     return stockApi;
                  }])
-                 .controller('stocksController', ['$scope', function($scope){
+                 .controller('stocksController', ['$scope', 'stockService', function($scope, stockService){
 
                   $scope.stock = {};
 
                   $scope.lookup = function(){
 
                     if($scope.ticker != undefined && $scope.ticker != ''){
-                        $scope.stock = {
-                          symbol: 'FOO',
-                          name: 'Example Corp',
-                          last_price: '123.00'
-                        }
+
+                      stockService.searchStocks($scope.ticker)
+                          .then(function(response){
+                                  $scope.stock ={
+                                    symbol = response.data.ticker;
+                                    name = response.data.name;
+                                    last_price = response.data.last_price;
+                                  }
+                                },
+                                function(response){});
+
                     } else {
                         $scope.stock = {}
                     }
