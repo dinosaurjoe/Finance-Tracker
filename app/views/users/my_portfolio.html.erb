@@ -16,9 +16,8 @@
     </div>
   </form>
 
-  <div class="results-block ng-hide">
-    <!-- Placeholder for messages -->
-    <span class="badge">Placeholder</span>
+  <div id="stock-lookup-errors" class="results-block alert alert-danger ng-hide" ng-show="stock.error">
+    {{stock.error}}
   </div>
 
   <div id="stock-lookup-results" class="well results-block ng-hide" ng-show="stock.name != undefined">

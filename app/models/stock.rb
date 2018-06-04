@@ -19,8 +19,4 @@ class Stock < ApplicationRecord
   def self.strip_commas(number)
     number.gsub(",", "")
   end
-
-# Stock cannot be added because you already added
-# 10 stocks
-# this stock
 end
