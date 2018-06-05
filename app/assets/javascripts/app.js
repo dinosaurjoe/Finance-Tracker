@@ -6,6 +6,10 @@ var app = angular.module('FinanceTrackerApp',[])
                       return $http.get('/search_stocks.json?stock=' + symbol);
                     }
 
+                    stockApi.addStockToPortfolio = function(symbol) {
+                      return $http.post('/user_stocks.json?stock=' + symbol);
+                    }
+
                     return stockApi;
                  }])
                  .controller('stocksController', ['$scope', 'stockService', function($scope, stockService){
@@ -32,5 +36,14 @@ var app = angular.module('FinanceTrackerApp',[])
                     } else {
                         $scope.stock = {}
                     }
+                   }
+
+                   $scope.add = function(){
+                      if($scope.stock != undefined && $scope.stock.symbol != ''){
+                        stockService.addStockToPortfolio($scope.stock.symbol)
+                        .then(function(response){}, function(response){});
+                      } else {
+                        $scope.stock.error = "Stock cannot be added";
+                      }
                    }
                  }])
