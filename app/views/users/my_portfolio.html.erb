@@ -16,6 +16,10 @@
     </div>
   </form>
 
+  <div id="stock-lookup-status" class="results-block alert alert-success ng-hid" ng-show="stock.message">
+    {{stock.message}}
+  </div>
+
   <div id="stock-lookup-errors" class="results-block alert alert-danger ng-hide" ng-show="stock.error">
     {{stock.error}}
   </div>

@@ -30,7 +30,7 @@ var app = angular.module('FinanceTrackerApp',[])
                                 },
                                 function(response){
                                   $scope.stock = {};
-                                  $scope.stock.error = response.data.response
+                                  $scope.stock.error = response.data.response;
                                 });
 
                     } else {
@@ -41,7 +41,16 @@ var app = angular.module('FinanceTrackerApp',[])
                    $scope.add = function(){
                       if($scope.stock != undefined && $scope.stock.symbol != ''){
                         stockService.addStockToPortfolio($scope.stock.symbol)
-                        .then(function(response){}, function(response){});
+                        .then(function(response){
+                          $scope.stock.error = null;
+                          $scope.stock.message = response.data.response;
+                          $scope.stock.name = null;
+                          $scope.ticker = null;
+                        },
+                            function(response){
+                            $scope.stock = {};
+                            $scope.stock.error = response.data.response;
+                        });
                       } else {
                         $scope.stock.error = "Stock cannot be added";
                       }
