@@ -59,6 +59,9 @@ var app = angular.module('FinanceTrackerApp',[])
                      }
                  }])
                  .controller('friendsController', ['$scope', function($scope){
-                    $scope.friend = {};
-                    $scope.friend.name = 'Foo';
+                    $scope.friends = {};
+
+                    $scope.lookup = function(){
+
+                    }
                  }])
