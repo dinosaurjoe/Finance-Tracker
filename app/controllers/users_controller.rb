@@ -22,8 +22,11 @@ class UsersController < ApplicationController
       @users = current_user.except_current_user(@users)
       flash.now[:danger] = "No users match this search criteria" if @users.blank?
     end
-    respond_to do |format|
-      format.js { render partial: 'friends/result' }
+
+    if @users.blank?
+      render status: 404, json: { response: 'No users match this search criteria.' }
+    else
+      render json: @users
     end
   end
 
