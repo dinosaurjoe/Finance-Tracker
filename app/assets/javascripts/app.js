@@ -23,6 +23,7 @@ var app = angular.module('FinanceTrackerApp',[])
                       stockService.searchStocks($scope.ticker)
                           .then(function(response){
                                     $scope.stock.error = null;
+                                    $scope.stock.message = null;
                                     $scope.stock.symbol = response.data.ticker;
                                     $scope.stock.name = response.data.name;
                                     $scope.stock.last_price = response.data.last_price;
@@ -46,6 +47,7 @@ var app = angular.module('FinanceTrackerApp',[])
                           $scope.stock.message = response.data.response;
                           $scope.stock.name = null;
                           $scope.ticker = null;
+                          $('#stock-list').load('my_portfolio.js');
                         },
                             function(response){
                             $scope.stock = {};
