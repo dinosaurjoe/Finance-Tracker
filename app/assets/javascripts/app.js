@@ -14,47 +14,51 @@ var app = angular.module('FinanceTrackerApp',[])
                  }])
                  .controller('stocksController', ['$scope', 'stockService', function($scope, stockService){
 
-                  $scope.stock = {};
+                    $scope.stock = {};
 
-                  $scope.lookup = function(){
+                    $scope.lookup = function(){
 
-                    if($scope.ticker != undefined && $scope.ticker != ''){
+                      if($scope.ticker != undefined && $scope.ticker != ''){
 
-                      stockService.searchStocks($scope.ticker)
-                          .then(function(response){
-                                    $scope.stock.error = null;
-                                    $scope.stock.message = null;
-                                    $scope.stock.symbol = response.data.ticker;
-                                    $scope.stock.name = response.data.name;
-                                    $scope.stock.last_price = response.data.last_price;
-                                    $scope.stock.can_be_added = response.data.can_be_added;
-                                },
-                                function(response){
-                                  $scope.stock = {};
-                                  $scope.stock.error = response.data.response;
-                                });
+                        stockService.searchStocks($scope.ticker)
+                            .then(function(response){
+                                      $scope.stock.error = null;
+                                      $scope.stock.message = null;
+                                      $scope.stock.symbol = response.data.ticker;
+                                      $scope.stock.name = response.data.name;
+                                      $scope.stock.last_price = response.data.last_price;
+                                      $scope.stock.can_be_added = response.data.can_be_added;
+                                  },
+                                  function(response){
+                                    $scope.stock = {};
+                                    $scope.stock.error = response.data.response;
+                                  });
 
-                    } else {
-                        $scope.stock = {}
-                    }
-                   }
-
-                   $scope.add = function(){
-                      if($scope.stock != undefined && $scope.stock.symbol != ''){
-                        stockService.addStockToPortfolio($scope.stock.symbol)
-                        .then(function(response){
-                          $scope.stock.error = null;
-                          $scope.stock.message = response.data.response;
-                          $scope.stock.name = null;
-                          $scope.ticker = null;
-                          $('#stock-list').load('my_portfolio.js');
-                        },
-                            function(response){
-                            $scope.stock = {};
-                            $scope.stock.error = response.data.response;
-                        });
                       } else {
-                        $scope.stock.error = "Stock cannot be added";
+                          $scope.stock = {}
                       }
-                   }
+                     }
+
+                     $scope.add = function(){
+                        if($scope.stock != undefined && $scope.stock.symbol != ''){
+                          stockService.addStockToPortfolio($scope.stock.symbol)
+                          .then(function(response){
+                            $scope.stock.error = null;
+                            $scope.stock.message = response.data.response;
+                            $scope.stock.name = null;
+                            $scope.ticker = null;
+                            $('#stock-list').load('my_portfolio.js');
+                          },
+                              function(response){
+                              $scope.stock = {};
+                              $scope.stock.error = response.data.response;
+                          });
+                        } else {
+                          $scope.stock.error = "Stock cannot be added";
+                        }
+                     }
+                 }])
+                 .controller('friendsController', ['$scope', function($scope){
+                    $scope.friend = {};
+                    $scope.friend.name = 'Foo';
                  }])
